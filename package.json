@@ -1,6 +1,6 @@
 {
 	"name": "@atuttle/mockable",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"type": "module",
 	"description": "A Higher Order Function that allows runtime overriding of functions, for testing purposes. Based on https://nalanj.dev/posts/mocking-without-loaders/",
 	"main": "index.js",
