@@ -1,0 +1,21 @@
+{
+	"name": "@atuttle/mockable",
+	"version": "1.0.0",
+	"type": "module",
+	"description": "A Higher Order Function that allows runtime overriding of functions, for testing purposes. Based on https://nalanj.dev/posts/mocking-without-loaders/",
+	"main": "index.js",
+	"engines": {
+		"node": ">=20.0.0"
+	},
+	"scripts": {
+		"test": "node --test",
+		"test:watch": "node --test --watch"
+	},
+	"keywords": [
+		"esm",
+		"mocking",
+		"testing"
+	],
+	"author": "Adam Tuttle <https://adamtuttle.codes>",
+	"license": "MIT"
+}

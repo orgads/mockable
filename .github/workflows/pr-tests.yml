@@ -1,0 +1,23 @@
+name: PR Tests
+on:
+  pull_request_target:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Run tests for pull request
+    runs-on: ubuntu-22.04
+    outputs:
+      job-status: ${{job.status}} # setup the output to pass to the notifiy job in case the test fail
+    steps:
+      - name: Checkout Code
+        id: git-checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{github.event.pull_request.head.ref}} # must pass the ref to the pull request because on: pull_request_target will default to the sha of the merge target (main branch)
+          repository: ${{github.event.pull_request.head.repo.full_name}} # be sure to also force the repository just in case
+          path: src
+
+      - name: Run Tests
+        run: cd src && npm test
