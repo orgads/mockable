@@ -6,6 +6,12 @@ tl;dr: it's still too hard/annoying to mock ESM modules. Export mockable-wrapped
 
 🚨 🚨 **NOTE: Only works on functions.** 🚨 🚨
 
+## Install
+
+```sh
+npm install @atcodes/mockable
+```
+
 ## Usage
 
 ### 1A: Export mockable resources
@@ -13,7 +19,7 @@ tl;dr: it's still too hard/annoying to mock ESM modules. Export mockable-wrapped
 When writing your own libraries and utilities, export them as mockable resources:
 
 ```js
-import { mockable } from '@atuttle/mockable';
+import { mockable } from '@atcodes/mockable';
 
 export const getDBConnection = mockable(getDBConnection);
 
@@ -26,7 +32,7 @@ Need to mock a 3rd party library that you don't control? Proxy it as a mockable 
 
 ```js
 import { somethingUseful } from 'something-useful';
-import { mockable } from '@atuttle/mockable';
+import { mockable } from '@atcodes/mockable';
 
 export const getSomethingUseful = mockable(somethingUseful);
 ```
