@@ -19,5 +19,14 @@ jobs:
           repository: ${{github.event.pull_request.head.repo.full_name}} # be sure to also force the repository just in case
           path: src
 
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
       - name: Run Tests
-        run: cd src && npm test
+        run: cd src && pnpm test

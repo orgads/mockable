@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { mockable } from './index.js';
+import { mockable } from './dist/index.js';
 
 const original_node_env = process.env.NODE_ENV ?? 'development';
 

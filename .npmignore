@@ -1,0 +1,10 @@
+.github
+.gitignore
+.npmignore
+.npmrc
+index.ts
+node_modules
+readme.md
+mockable.test.js
+tsconfig.json
+tsup.config.ts

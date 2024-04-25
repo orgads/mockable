@@ -7,9 +7,17 @@
 	"engines": {
 		"node": ">=20.0.0"
 	},
+	"exports": {
+		"import": "./dist/index.mjs",
+		"require": "./dist/index.js"
+	},
 	"scripts": {
-		"test": "node --test",
-		"test:watch": "node --test --watch"
+		"build": "tsup index.ts",
+		"lint": "tsc",
+		"prepublishOnly": "pnpm run build",
+		"test:run": "node --test",
+		"test:watch": "node --test --watch",
+		"test": "pnpm run build && pnpm run test:run"
 	},
 	"keywords": [
 		"esm",
@@ -17,5 +25,10 @@
 		"testing"
 	],
 	"author": "Adam Tuttle <https://adamtuttle.codes>",
-	"license": "MIT"
+	"license": "MIT",
+	"devDependencies": {
+		"@types/node": "^20.12.7",
+		"tsup": "^8.0.2",
+		"typescript": "^5.4.5"
+	}
 }
