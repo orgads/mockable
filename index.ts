@@ -1,7 +1,7 @@
 type MockableFunction = (...args: any[]) => any;
 type MockFunction = (...args: any[]) => any;
 
-export function mockable(original: MockableFunction) {
+export function mockable<T extends MockableFunction>(original: T) {
 	if (process.env.NODE_ENV === 'production') {
 		return original;
 	}
@@ -27,5 +27,5 @@ export function mockable(original: MockableFunction) {
 		impl = undefined;
 	};
 
-	return wrap;
+	return wrap as unknown as T;
 }
