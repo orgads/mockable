@@ -21,9 +21,9 @@ When writing your own libraries and utilities, export them as mockable resources
 ```js
 import { mockable } from '@atcodes/mockable';
 
-export const getDBConnection = mockable(getDBConnection);
+export const getDBConnection = mockable(_getDBConnection);
 
-async function getDBConnection(){ /* ... */ };
+async function _getDBConnection(){ /* ... */ };
 ```
 
 ### 1B: Proxy 3rd party libraries as mockable
@@ -31,10 +31,10 @@ async function getDBConnection(){ /* ... */ };
 Need to mock a 3rd party library that you don't control? Proxy it as a mockable resource:
 
 ```js
-import { somethingUseful } from 'something-useful';
+import { doSomethingUseful as doSomethingUseful_ } from 'something-useful';
 import { mockable } from '@atcodes/mockable';
 
-export const getSomethingUseful = mockable(somethingUseful);
+export const doSomethingUseful = mockable(doSomethingUseful_);
 ```
 
 ### 2: Override in tests
@@ -72,3 +72,5 @@ test("success", async (t) => {
 	assert.equal(resp.statusCode, 200);
 });
 ```
+
+Bonus points: Override with mocks/fakes from a library like [Sinon.js](https://sinonjs.org) to get access to lots of useful tracking on your mock implementations.
