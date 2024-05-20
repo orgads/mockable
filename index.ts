@@ -2,6 +2,9 @@ type MockableFunction = (...args: any[]) => any;
 type MockFunction = (...args: any[]) => any;
 
 export function mockable<T extends MockableFunction>(original: T) {
+	if (typeof original !== 'function') {
+		throw new Error('mockable() only works with functions');
+	}
 	if (process.env.NODE_ENV === 'production') {
 		return original;
 	}
