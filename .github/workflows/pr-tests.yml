@@ -1,6 +1,7 @@
-name: PR Tests
+name: Run tests on PR
+
 on:
-  pull_request_target:
+  pull_request:
     branches:
       - main
 
@@ -8,29 +9,14 @@ jobs:
   test:
     strategy:
       matrix:
-        version: [18, 20, 22]
-
-    name: Run tests for pull request
-    runs-on: ubuntu-22.04
-    outputs:
-      job-status: ${{job.status}} # setup the output to pass to the notifiy job in case the test fail
+        node: ['18', '20', '22']
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
-        id: git-checkout
-        uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v3
         with:
-          ref: ${{github.event.pull_request.head.ref}} # must pass the ref to the pull request because on: pull_request_target will default to the sha of the merge target (main branch)
-          repository: ${{github.event.pull_request.head.repo.full_name}} # be sure to also force the repository just in case
-          path: src
-
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.version }}
-          cache: 'pnpm'
-
-      - name: Run Tests
-        run: cd src && pnpm test
+          node-version: ${{ matrix.node }}
+      - run: pnpm install
+      - run: pnpm test
