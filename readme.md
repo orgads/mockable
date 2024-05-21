@@ -1,5 +1,7 @@
 # Mockable
 
+[![Tests](https://github.com/atuttle/mockable/actions/workflows/pr-tests.yml/badge.svg?branch=main)](https://github.com/atuttle/mockable/actions/workflows/pr-tests.yml)
+
 Based on: https://nalanj.dev/posts/mocking-without-loaders/
 
 tl;dr: it's still too hard/annoying to mock ESM modules. Export mockable-wrapped functions, and your tests can override them as needed, with near-zero overhead in production.
