@@ -1,7 +1,13 @@
 type MockableFunction = (...args: any[]) => any;
 
 type Mockable<T extends MockableFunction> = T & {
+	/**
+	 * Mock this function with a different implementation
+	 */
 	override?: (mock: T) => T;
+	/**
+	 * Restore original implementation
+	 */
 	clear?: () => void;
 };
 
