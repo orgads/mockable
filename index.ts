@@ -1,7 +1,11 @@
 type MockableFunction = (...args: any[]) => any;
-type MockFunction = (...args: any[]) => any;
 
-export function mockable<T extends MockableFunction>(original: T) {
+type Mockable<T extends MockableFunction> = T & {
+	override?: (mock: T) => T;
+	clear?: () => void;
+};
+
+export function mockable<T extends MockableFunction>(original: T): Mockable<T> {
 	if (typeof original !== 'function') {
 		throw new Error('mockable() only works with functions');
 	}
@@ -18,10 +22,10 @@ export function mockable<T extends MockableFunction>(original: T) {
 		} else {
 			return original(...args);
 		}
-	};
+	} as Mockable<T>;
 
 	// attach an override function to wrap
-	wrap.override = function (mock: MockFunction) {
+	wrap.override = function (mock: T) {
 		impl = mock;
 		return mock;
 	};
@@ -30,5 +34,5 @@ export function mockable<T extends MockableFunction>(original: T) {
 		impl = undefined;
 	};
 
-	return wrap as unknown as T;
+	return wrap;
 }
