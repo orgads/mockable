@@ -3,6 +3,7 @@
 	"version": "1.1.4",
 	"type": "module",
 	"description": "A Higher Order Function that allows runtime overriding of functions, for testing purposes. Based on https://nalanj.dev/posts/mocking-without-loaders/",
+	"homepage": "https://github.com/atuttle/mockable",
 	"main": "index.js",
 	"engines": {
 		"node": ">=20.0.0"
